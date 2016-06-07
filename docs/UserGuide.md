@@ -58,7 +58,7 @@ The Mininet tab provides a number of features.
 If the Mininet server is detected, the user is able to turn off the running instance with the 'off' button.
 A range of topologies can be selected from to deploy.
 
-<img src="./img/mininet_tab.png" width="75%">
+<img src="./img/mininet_tab.png" >
     
 A user can alternatively define their own topology by specifying the number of switches, hosts and links.
 A 'settings' button, when pressed, provides the user with options for setting the links between the switches and hosts.
@@ -72,7 +72,7 @@ Pingall ignores specified hosts, and attempts to send a ping between all hosts.
 ##Flows Tab
 The Flows tab has a number of buttons which provide different functions. 
 
-<img src="./img/flows_tab.png" width="75%">
+<img src="./img/flows_tab.png" >
 
 'Install Shortest Paths' and 'Allow ARP broadcast' are used to demonstrate multiple flow definitions being pushed to each switch. 
 
@@ -103,7 +103,7 @@ Match Fields allow you to define what packets an action is intended for.
 Simply select the relevant fields and specify the value to be matched to.
 Some fields have pre-requisite matches that must be selected first – for example to specify the IPv4 Source, EtherType needs to be selected and set to IPv4.
 
-<img src="./img/add_flow2.png" width="75%">
+<img src="./img/add_flow2.png" >
 
 Under 'Action', Output method and Queues can be specified. 
 Output can be a port number or the input can be left empty to drop packets. 'All', 'Flood' and 'Controller' are also valid output options, but these flows are not shown on the graph.
@@ -113,4 +113,4 @@ Priority defines the priority of the defined rule. If idle timeout is specified,
 
 The forwarding tab displays any queues that can be found on switches, as well as allowing the forwarding method to be changed according to approximate network statistics.
 
-<img src="./img/forwarding.png" width="75%">
+<img src="./img/forwarding.png">
