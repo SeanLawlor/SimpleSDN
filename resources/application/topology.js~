@@ -1,0 +1,104 @@
+$(function(){ // on dom ready
+
+    topology.init();
+    var waiting = false;
+    window.setInterval(function(){
+        if(!waiting) {
+            waiting=true;
+            topology.getUpdates();
+            waiting=false;
+        }
+    },5000);
+
+}); // on dom ready
+
+var topology = {
+    data: window.graph_data,
+    update:true,
+    getUpdates:function(){
+        if(!topology.update) return;
+        $.get(site_url+'/dashboard/graph', function(data){topology.data = JSON.parse(data); topology.updateGraph();});
+    },
+    init: function(){
+        $('#topology-pane').cytoscape({
+            style: cytoscape.stylesheet()
+              .selector('node[type="switch"]')
+                .style({
+                  'content': 'data(id)',
+                  'shape':'roundrectangle',
+                  'background-color': 'powderblue',
+              })
+              .selector('node[type="device"]')
+                .style({
+                  'content': function(ele){return ele.data('ip')+"\n"+ele.data('mac');},
+                  'shape':'rectangle',
+                  'background-color': 'whitesmoke',
+              })
+              .selector('node')
+                .style({
+                  'text-wrap': 'wrap',
+                  'text-valign': 'center',
+                  'text-halign': 'center',
+                  'width':'200px',
+                  'height':'40px',
+                  'border-width':'1px',
+                  'border-color':'silver'
+              })
+              .selector('edge[type="flow"]')
+                .style({
+                  'line-color':'green',
+                  'target-arrow-shape':'triangle-backcurve',
+                  'target-arrow-color':'green',
+                  'z-index':'-1',
+                  'opacity':'0.85'
+              })
+              .selector('edge[type="link"]')
+                .style({
+                  'content':'data(lineSpeed)',
+                  'line-color':'silver',
+                  'color':'silver',
+                  'edge-text-rotation':'autorotate'
+              })
+              .selector('edge')
+                .style({
+                  'text-background-color':'white',
+                  'text-background-opacity':0.95,
+                  'curve-style': 'bezier',
+                  'control-point-step-size':0,
+              }),
+
+            minZoom: .3,
+            maxZoom: 9,
+            layout:{
+                name:'arbor',
+                fit:false,
+                repulsion:2000,
+                maxSimulationTime: 10000,
+            },
+            elements: topology.data,
+
+            ready: function(){
+              window.cy = this;
+            }
+        })
+    },
+    
+    stop: function(){
+        $('#topology-pane').children().remove();
+    },
+    updateGraph:function(){
+        cy.startBatch();
+        cy.edges().remove();
+        cy.add(topology.data);
+        cy.endBatch();
+    },
+    toggleLock:function(){
+        topology.update = !topology.update;
+        if(topology.update) $('#topology-locker > span').removeClass('glyphicon-transfer').addClass('glyphicon-lock')
+        else $('#topology-locker > span').removeClass('glyphicon-lock').addClass('glyphicon-transfer')
+    },
+    refresh:function (){
+        topology.stop();
+        topology.init();
+    }
+}

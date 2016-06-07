@@ -1,0 +1,49 @@
+#control-pane{
+    height: 100vh; 
+    padding-right: 2px
+}
+
+#control-pane > div {
+    width: 100%;
+}
+
+#topology-pane{
+    height: 100vh;
+    padding-left: 0px; 
+    border-left: 1px solid silver;
+}
+
+
+#Mininet > div {
+    margin-bottom: 1px;
+}
+
+.glyphicon-transfer{
+    transform: rotate(90deg)
+}
+
+.switch-id-placeholder{
+	text-align: center;
+}
+
+.subTable{
+	margin: 0px;
+	padding: 0px;
+}
+
+#popover-content{
+    margin-bottom: 5px;
+}
+
+#graph-info-popover{
+    position: absolute;bottom:5px;right:5px;max-width:50%; background-color:rgba(255, 255, 255, 1)
+}
+
+#switch-table-placeholder td {
+    max-height: 50px;
+    overflow: scroll;
+}
+
+.row-full-width{
+    width: 100%;
+}
