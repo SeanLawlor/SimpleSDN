@@ -21,7 +21,7 @@ A Linux distribution that supports Open vSwitch is required
 ##Dependencies
 
 ###Installing dependencies on Ubuntu:
-    ```$sudo apt-get install php5 curl default-jre ant make gcc g++ mininet```
+`$sudo apt-get install php5 curl default-jre ant make gcc g++ mininet`
 
 
 Used For | Dependencies
@@ -40,10 +40,9 @@ Build script should first be run as root from the same directory:
 	`$ sudo ./build.sh`
 
 This build script does the following: 
-	- Compiles D-ITG and moves it to the required folder
-	- Creates a folder required by floodlight (/var/lib/floodlight)
-	- Adds an exception to the sudoers file (if it does not already exist) to allow the mininet script to be executed by the web application
-		(Changing the path afterwards will require the sudoers file to be updated)
+* Compiles D-ITG and moves it to the required folder
+* Creates a folder required by floodlight (/var/lib/floodlight)
+* Adds an exception to the sudoers file (if it does not already exist) to allow the mininet script to be executed by the web application (Changing the path afterwards will require the sudoers file to be updated)
 
 ---
 
